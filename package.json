@@ -1,0 +1,24 @@
+{
+  "name": "dazeus-plugin-boeket",
+  "version": "0.1.0",
+  "description": "Boeket generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com:dazeus/dazeus-plugin-boeket.git"
+  },
+  "keywords": [
+    "boeket",
+    "dazeus"
+  ],
+  "author": "Ruben Nijveld <ruben@gewooniets.nl>",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "dazeus": "",
+    "agfl-generate": ""
+  }
+}

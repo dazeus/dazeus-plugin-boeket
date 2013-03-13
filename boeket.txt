@@ -1,0 +1,658 @@
+GRAMMAR boeket.
+
+ROOT boeket.
+
+X       :: een|twee|drie|vier|vijf|zes.
+Y       :: een|twee|drie|vier|vijf.
+Z       :: een|twee|drie|vier|vijf|zes.
+MV      :: m|v.
+MVX     :: m|v.
+MVY     :: m|v.
+MVZ     :: m|v.
+GROEP   :: problemen|crisis|oplossingen.
+
+  # Hulpregels----------------------------
+
+EOZ: ".".
+KOMMA: "," .
+
+opron(MV):
+        "hem" ,         {MV::m};
+        "haar",         {MV::v}.
+spron(MV):
+        "hij",          {MV::m};
+        "zij",          {MV::v}.
+bpron(MV):
+        "zijn",         {MV::m};
+        "haar",         {MV::v}.
+
+  #Globale Plotgrammatica----------------------------
+
+boeket:
+        mvplot(m,v) ;
+        mvplot(v,m) .
+
+mvplot(MVX,MVY):
+        plot(X,MVX,Y,MVY).
+
+plot(X,MVX,Y,MVY):
+        introductie(X,MVX,Y,MVY),
+         intriges(X,MVX,Y,MVY),
+          slot(X,MVX,Y,MVY).
+
+  #Plotgedeelten----------------------------
+
+introductie(X,MVX,Y,MVY):
+        held(X,MVX),
+         ontmoeting(X,MVX,Y,MVY) .
+
+slot(X,MVX,Y,MVY):
+        tenslotte(X,MVX,Y,MVY),
+         "vraagt",
+          naam(X,MVX),
+           naam(Y,MVY),
+            "toch ten huwelijk",
+             KOMMA,
+              "en",
+               eindgoedalgoed ,
+                EOZ;
+        tenslotte(X,MVX,Y,MVY),
+         "kiest",
+          naam(X,MVX),
+           "met heel",
+            bpron(MVX),
+             "hart voor",
+              naam(Y,MVY),
+               "en",
+                ergens(X,MVX,Y,MVY),
+                 doenzet,
+                  EOZ;
+        tenslotte(X,MVX,Y,MVY),
+         "valt",
+          naam(X,MVX),
+           "als een blok voor",
+            naam(Y,MVY),
+             KOMMA,
+              "en",
+               eindgoedalgoed ,
+                EOZ;
+        tenslotte(X,MVX,Y,MVY),
+         "bekent",
+          naam(X,MVX),
+           "schuld",
+            KOMMA,
+             naam(Y,MVY),
+              "vergeeft",
+               opron(MVX),
+                KOMMA,
+                 "en",
+                  ergens(X,MVX,Y,MVY),
+                   doenzet,
+                    EOZ.
+
+intriges(X,MVX,Y,MVY):
+        intrige(problemen,X,MVX,Y,MVY),
+        intrige(crisis,X,MVX,Y,MVY),
+        intrige(oplossingen,X,MVX,Y,MVY).
+
+intrige(GROEP,X,MVX,Y,MVY):
+
+  #Intrigegroep A: eerste verwikkelingen----------------------------
+
+        "Als",
+         naam(X,MVX),
+          "geheel onverwacht een",
+           boodschap ,
+            "krijgt van",
+             bpron(MVX),
+              "suikertante",
+                KOMMA ,
+                 "verliest",
+                  spron(MVX),
+                   naam(Y,MVY),
+                    "uit het oog",
+                     EOZ,
+{GROEP::problemen};
+
+        "Tijdens een",
+         gelegenheid(X,MVX,Y,MVY),
+          "ontdekt",
+           naam(X,MVX),
+            "het vreselijke geheim",
+             KOMMA,
+              "dat het leven van",
+               naam(Y,MVY),
+                "beheerst",
+                 EOZ,
+{GROEP::problemen};
+
+        tlijktgoed(X,MVX,Y,MVY),
+         KOMMA,
+          "maar steeds vaker vraagt",
+           naam(X,MVX),
+            "zich af", KOMMA , "of",
+             twelgoedzit(X,MVX,Y,MVY),
+              EOZ,
+{GROEP::problemen};
+
+       "Als gevolg van een",
+        ramp,
+         "raakt",
+          naam(Y,MVY),
+           invalide,
+            KOMMA,
+            "hetgeen",
+             gevolgenheeft,
+              EOZ,
+{GROEP::problemen};
+
+  #Intrigegroep B: nieuwe verwikkelingen----------------------------
+
+       "Dan krijgt",
+        naam(X,MVX),
+         "een",
+          boodschap ,
+           KOMMA,
+            "waarna",
+             spron(MVX),
+              "halsoverkop naar",
+               exotica,
+                "vertrekt",
+                 EOZ,
+{GROEP::crisis};
+
+        naam(Y,MVY),
+         "raakt in een depressie en",
+          spron(MVY) ,
+           "zoekt steun bij",
+            bpron(MVY),
+             relatie(MVX) ,
+              KOMMA,
+               "de",
+                quale,
+                 bijfiguur(Z,MVX),
+                  EOZ,
+{GROEP::crisis};
+
+        inpaniek,
+         "begint",
+          naam(Y,MVY),
+           "een verhouding met",
+            bpron(MVY),
+             relatie(MVX),
+              bijfiguur(Z,MVX),
+               EOZ,
+{GROEP::crisis};
+
+        "Dan komt",
+         naam(X,MVX),
+          "erachter",
+           KOMMA,
+            "dat",
+             naam(Y,MVY),
+              hetdoetmet,
+               bpron(MVY) ,
+                relatie(MVX),
+                 bijfiguur(Z,MVX) ,
+                  EOZ,
+{GROEP::crisis};
+
+        inpaniek ,
+         "vraagt",
+          naam(X,MVX),
+           bpron(MVX),
+            relatie(MVY),
+             bijfiguur(Z,MVY),
+              "om raad",
+               EOZ,
+{GROEP::crisis};
+
+  #Intrigegroep C: naar het einde----------------------------
+        "Op een",
+         gelegenheid(X,MVX,Y,MVY) ,
+          "raken de ontwikkelingen in een stroomversnelling",
+           EOZ,
+{GROEP::oplossingen};
+
+        naam(Y,MVY),
+         "wendt zich tot de gebedsgenezeres",
+          bijfiguur(Z,v),
+           "die",
+            opron(MVY),
+             "weer bij zinnen brengt",
+              EOZ,
+{GROEP::oplossingen};
+
+        "Van",
+         bpron(MVX),
+          relatie(MVY),
+           bijfiguur(Z,MVY),
+            "mag",
+             naam(X,MVX),
+              bpron(MVX),
+               "grote liefde",
+                naam(Y,MVY),
+                 "niet meer ontmoeten",
+                  KOMMA,
+                   "maar",
+                    spron(MVX),
+                     "trekt zich daar niets van aan",
+                      EOZ,
+{GROEP::oplossingen};
+
+        "Door bemiddeling van",
+         bijfiguur(Z,MVX),
+          KOMMA,
+           "een",
+            relatie(MVX),
+             "van",
+              naam(Y,MVY),
+               KOMMA,
+                "wordt de zaak gelukkig uitgepraat",
+                 EOZ,
+{GROEP::oplossingen}.
+
+  #Bouwstenen voor de plotelementen----------------------------
+
+held(X,MVX):
+        naam(X,MVX),
+         "is een",
+          quale ,
+           beroep(MVX),
+            KOMMA,
+             "die zojuist in",
+              woonplaats,
+               "is komen wonen",
+                EOZ;
+        "De",
+         quale,
+          beroep(MVX),
+           naam(X,MVX),
+            "woont",
+             altijden(MVX),
+              "in",
+               woonplaats,
+                EOZ;
+        "In",
+         bpron(MVX),
+          "woonplaats",
+           woonplaats,
+            "kwijnt de",
+             quale,
+              beroep(MVX) ,
+               naam(X,MVX) ,
+                "langzaam weg",
+                 EOZ;
+        "De",
+         beroep(MVX) ,
+          naam(X,MVX) ,
+           "uit",
+            woonplaats ,
+             isongelukkig(MVX,MVY),
+              EOZ;
+        "In",
+         woonplaats,
+          "woont een",
+           quale,
+            beroep(MVX),
+             KOMMA,
+              "genaamd",
+               naam(X,MVX),
+                KOMMA,
+                  "die bijzonder",
+                   qual,
+                    "is",
+                    EOZ.
+
+ontmoeting(X,MVX,Y,MVY):
+        naam(X,MVX),
+         "heeft al lange tijd een oogje op",
+          subheld(Y,MVY),
+           KOMMA,
+            "maar deze ziet",
+             opron(MVX),
+              "niet staan",
+               EOZ;
+        "Het blijkt dat",
+         naam(X,MVX),
+          hetdoetmet,
+           subheld(Y,MVY),
+            KOMMA,
+             "maar",
+              noggeenromance,
+               EOZ;
+        "Op een",
+         gelegenheid(X,MVX,Y,MVY),
+          "ontmoet",
+           spron(MVX),
+            subheld(Y,MVY),
+             KOMMA,
+              "die meteen",
+               ietsdoet(MVX,MVY),
+                EOZ ;
+        naam(X,MVX),
+         KOMMA,
+          "die van eenvoudige komaf is",
+           KOMMA,
+            "raakt verliefd op de adellijke",
+             naam(Y,MVY),
+              KOMMA,
+               "die als",
+                beroep(MVY),
+                 "in",
+                  woonplaats,
+                   "furore maakt",
+                    EOZ;
+        "Door",
+         bpron(MVX),
+          relatie(MVY),
+           bijfiguur(Z,MVY),
+            "wordt",
+             spron(MVX),
+              "voorgesteld aan",
+               subheld(Y,MVY),
+                KOMMA,
+                 "die meteen",
+                  ietsdoet(MVX,MVY),
+                   EOZ.
+
+subheld(Y,MVY):
+        naam(Y,MVY),
+         KOMMA,
+          "een",
+           quale,
+            beroep(MVY),
+             "uit",
+              woonplaats;
+        "de",
+         quale,
+          beroep(MVY),
+           "uit",
+            woonplaats,
+             KOMMA,
+              naam(Y,MVY) .
+
+altijden(MV):
+        "al jaren";
+        "sinds",bpron(MV),"vroegste jeugd";
+        "sinds",bpron(MV),"ouders gescheiden zijn";
+        "vanaf",bpron(MV),"vreselijke ziekte";
+        "nog maar pas";
+        "al zo lang als",spron(MV),"zich kan herinneren".
+
+isongelukkig(MVX,MVY):
+        "is sinds de dood van",
+         bpron(MVX),relatie(MVZ),
+          "zwaar depressief";
+        "staat op het punt zelfmoord te plegen";
+        "komt bijna nooit meer onder de mensen";
+        "ziet het leven niet meer zitten".
+
+tlijktgoed(X,MVX,Y,MVY):
+        "Op het lichamelijke vlak vliegen de vonken ervanaf";
+        "Hun relatie begint stormachtig";
+        naam(X,MVX),
+         "is in de zevende hemel met",
+          naam(Y,MVY);
+        naam(Y,MVY),
+         "lijkt de ideale levenspartner voor",
+          opron(MVX);
+        "Aanvankelijk lijken",
+         naam(X,MVX),
+          "en",
+           naam(Y,MVY),
+            "het ware geluk gevonden te hebben".
+
+twelgoedzit(X,MVX,Y,MVY):
+        spron(MVX),
+         "wel echt met",
+          opron(MVY),
+           "kan praten";
+        naam(Y,MVY),
+         "en",
+          spron(MVX),
+           "wel een werkelijk goed contact met elkaar hebben";
+        naam(Y,MVY),
+         "wel helemaal eerlijk tegen",
+          opron(MVX),
+          "is";
+        naam(Y,MVY),
+         "niet meer aandacht heeft voor de",
+          quale,
+           beroep(MVX),
+            bijfiguur(Z,MVX).
+
+tenslotte(X,MVX,Y,MVY):
+        "Uiteindelijk";
+        "Na een heftige scene";
+        "Dankzij de",relatie(MVZ),"van",naam(X,MVX);
+        "Nu",bpron(MVX),"weerstand gebroken is";
+        "Nu",spron(MVX),bpron(MVX),"wilde haren kwijt is";
+        "Dan";
+        "Ten slotte".
+
+eindgoedalgoed:
+        "zij krijgen vele liefdesbaby's";
+        "zij vinden het ware geluk";
+        "in elkaars armen bereiken zij de toppen van het genot";
+        "tonen zij elkaar hun ware gevoelens";
+        "zien zij in dat ze voor elkaar bestemd zijn";
+        "geven zij zich over aan hun hartstocht".
+
+ergens(X,MVX,Y,MVY):
+        "in hun hutje op de hei";
+        "in het peperdure penthouse van", naam(X,MVX);
+        "bij",naam(Y,MVY),"op de ranch";
+        "op het luxueuze jacht van",naam(Y,MVY);
+        "op het cruiseschip van de",relatie(MV),"van",naam(X,MVX).
+
+ietsdoet(MVX,MVY):
+            bpron(MVX),
+             "hart steelt";
+            "indruk op",
+             opron(MVX),
+              "maakt";
+            bpron(MVX),
+             "hart in vuur en vlam zet";
+            "van",
+              bpron(MVY),
+              "hart geen moordkuil maakt";
+            "niet van",
+              bpron(MVX),
+               "zijde wijkt";
+            "een indringend gesprek met ",
+              opron(MVX),
+               "begint";
+            "de stoute schoenen aantrekt";
+            bpron(MVY) ,
+             "diepste zielenroerselen aan ",
+              opron(MVX),
+               "openbaart".
+
+  #Concrete invullingen van basiselementen----------------------------
+
+qual:
+        "schuchter";
+        "mooi";
+        "welgesteld";
+        "hartstochtelijk";
+        "aantrekkelijk";
+        "succesvol";
+        "rijk".
+
+quale:
+        "schuchtere";
+        "mooie";
+        "energieke";
+        "briljante";
+        "welgestelde";
+        "onweerstaanbare";
+        "hartstochtelijke";
+        "aantrekkelijke";
+        "succesvolle";
+        "rijke".
+
+beroep(MV):
+           "hersenchirurg", {MV::m};
+           "hoogleraar", {MV::m};
+           "cruiseschipkapitein", {MV::m};
+           "edelman", {MV::m};
+           "econoom", {MV::m};
+           "tandarts", {MV::m};
+           "archeoloog", {MV::m};
+           "astronaut", {MV::m};
+           "vuilnisophaler", {MV::m};
+           "bouwvakker", {MV::m};
+           "concertpianist", {MV::m};
+           "boer", {MV::m};
+           "makelaar", {MV::m};
+           "operazangeres", {MV::v};
+           "secretaresse", {MV::v};
+           "verpleegster", {MV::v};
+           "directrice", {MV::v};
+           "stagiaire", {MV::v};
+           "politica", {MV::v};
+           "nachtclubzangeres", {MV::v};
+           "tupperwareconsulente", {MV::v};
+           "boerin", {MV::v}.
+
+woonplaats:
+        "Nijmegen";
+        "Casablanca";
+            "New York";
+            "Berlijn";
+            "Surhuisterveen";
+            "Parijs";
+            "Doetinchem";
+            "Maastricht";
+            "Brussel";
+            "Den Helder";
+            "Trondheim".
+
+exotica:
+        "de Caraiben";
+        "Barbados";
+        "de Antillen";
+        "Martinique";
+        "Haiti";
+        "de Zuidpool";
+        "Hawaii".
+
+relatie(MV) :
+        "ex-man"                        ,{MV::m};
+        "grootvader"                    ,{MV::m};
+        "neef"                          ,{MV::m};
+        "oudoom"                        ,{MV::m};
+        "magnetiseur"                   ,{MV::m};
+        "vroegere leraar Nederlands"    ,{MV::m};
+        "jeugdvriend"                   ,{MV::m};
+        "advocaat"                      ,{MV::m};
+        "kamergenoot"                   ,{MV::m};
+        "ex-vrouw"                      ,{MV::v};
+        "grootmoeder"                   ,{MV::v};
+        "nicht"                         ,{MV::v};
+        "oudtante"                      ,{MV::v};
+        "vroegere lerares Nederlands"   ,{MV::v};
+        "waarzegster"                   ,{MV::v};
+        "kamergenote"                   ,{MV::v};
+        "jeugdvriendin"                 ,{MV::v}.
+
+boodschap :
+        "geheimzinnige brief";
+        "opgewonden telefoontje";
+        "dringende e-mail";
+        "verrassend bezoek";
+        "schokkende mededeling";
+        "kort maar krachtig SMS-bericht".
+
+gelegenheid(X,MVX,Y,MVY):
+        "vakantie op", exotica;
+        "zakendiner";
+        "galadiner op de ambassade";
+        "personeelsuitje van de zaak";
+        "dansmarathon voor gevorderden";
+        "cruise naar de Azoren".
+
+inpaniek:
+        "Verblind door tegenstrijdige gevoelens";
+        "In paniek";
+        "In alle staten";
+        "Tot tranen toe bewogen";
+        "Ten einde raad";
+        "Door verdriet overmand".
+
+hetdoetmet:
+        "al jaren bevriend is met";
+        "een geheime relatie heeft met";
+        "nog steeds gevoelens koestert voor".
+
+noggeenromance:
+        "tot een echte romance is het nooit gekomen";
+        "ze hebben elkaar nog nooit hun ware gevoelens getoond";
+        "meer dan vriendschappelijk zijn ze nog niet met elkaar omgegaan";
+        "tot nu toe hebben ze hun ongebreidelde passie steeds onderdrukt".
+
+doenzet:
+        "brengen ze nog menig gelukkig uurtje door";
+        "worden ze samen heel gelukkig";
+        "sluiten ze zich af van de harde wereld".
+
+ramp:
+        "vreselijk ongeval";
+        "vliegtuigongeluk";
+        "bomexplosie";
+        "bosbrand";
+        "aanrijding";
+        "terroristische aanslag".
+
+invalide:
+        "aan een rolstoel gekluisterd";
+        "invalide";
+        "ernstig gewond";
+        "in coma";
+        "gedeeltelijk verlamd".
+
+gevolgenheeft:
+        hunrelatie, bemoeilijkt.
+
+hunrelatie:
+        "hun sportieve relatie";
+        "hun hartstochtelijke ontmoetingen";
+        "vooral hun fysieke relatie";
+        "hun prille romance".
+
+bemoeilijkt:
+        "ernstig onder druk zet";
+        "zwaar op de proef stelt";
+        "enigszins bemoeilijkt";
+        "in het tegendeel doet omslaan";
+        "tot een hel maakt".
+
+naam(X,MV):
+        "Monique",      {X::een}, {MV::v};
+        "Kim",          {X::twee}, {MV::v};
+        "Chantal",      {X::drie}, {MV::v};
+        "Samantha",     {X::vier}, {MV::v};
+        "Antoinette",   {X::vijf}, {MV::v};
+        "Yella",        {X::zes},  {MV::v};
+        "Alexander",    {X::een},  {MV::m};
+        "Tom",          {X::twee}, {MV::m};
+        "Johan",        {X::drie}, {MV::m};
+        "David",        {X::vier}, {MV::m};
+        "Marco",        {X::vijf}, {MV::m};
+        "Erik",         {X::zes},  {MV::m}.
+
+bijfiguur(Z,MV):
+        "Peter",        {Z::een}, {MV::m};
+        "Angelique",    {Z::een}, {MV::v};
+        "Arnold",       {Z::twee}, {MV::m};
+        "Debbie",       {Z::twee}, {MV::v};
+        "Martin",       {Z::drie}, {MV::m};
+        "Desiree",      {Z::drie}, {MV::v};
+        "Lodewijk",     {Z::vier}, {MV::m};
+        "Chantal",      {Z::vier}, {MV::v};
+        "Boudewijn",    {Z::vijf}, {MV::m};
+        "Linda",        {Z::vijf}, {MV::v};
+        "Luke",         {Z::zes},  {MV::m};
+        "Patricia",     {Z::zes},  {MV::v}.
+
