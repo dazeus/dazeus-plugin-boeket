@@ -1,6 +1,6 @@
 {
   "name": "dazeus-plugin-boeket",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Boeket generator",
   "main": "index.js",
   "scripts": {
@@ -19,6 +19,7 @@
   "readmeFilename": "README.md",
   "dependencies": {
     "dazeus": "",
-    "agfl-generate": ""
+    "agfl-generate": "",
+    "underscore": ""
   }
 }

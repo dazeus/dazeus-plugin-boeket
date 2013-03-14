@@ -2,9 +2,9 @@ GRAMMAR boeket.
 
 ROOT boeket.
 
-X       :: een|twee|drie|vier|vijf|zes.
+X       :: een|twee|drie|vier|vijf|zes|zeven.
 Y       :: een|twee|drie|vier|vijf.
-Z       :: een|twee|drie|vier|vijf|zes.
+Z       :: een|twee|drie|vier|vijf|zes|zeven.
 MV      :: m|v.
 MVX     :: m|v.
 MVY     :: m|v.
@@ -28,9 +28,13 @@ bpron(MV):
 
   #Globale Plotgrammatica----------------------------
 
+boeket_about(MVX,X):
+        plot(X,m,Y,v), {MVX::m};
+        plot(X,v,Y,m), {MVX::v}.
+
 boeket:
-        mvplot(m,v) ;
-        mvplot(v,m) .
+        mvplot(m,v);
+        mvplot(v,m).
 
 mvplot(MVX,MVY):
         plot(X,MVX,Y,MVY).
@@ -640,7 +644,9 @@ naam(X,MV):
         "Johan",        {X::drie}, {MV::m};
         "David",        {X::vier}, {MV::m};
         "Marco",        {X::vijf}, {MV::m};
-        "Erik",         {X::zes},  {MV::m}.
+        "Erik",         {X::zes},  {MV::m};
+        "${man}",       {X::zeven}, {MV::m};
+        "${vrouw}",     {X::zeven}, {MV::v}.
 
 bijfiguur(Z,MV):
         "Peter",        {Z::een}, {MV::m};
@@ -654,5 +660,7 @@ bijfiguur(Z,MV):
         "Boudewijn",    {Z::vijf}, {MV::m};
         "Linda",        {Z::vijf}, {MV::v};
         "Luke",         {Z::zes},  {MV::m};
-        "Patricia",     {Z::zes},  {MV::v}.
+        "Patricia",     {Z::zes},  {MV::v};
+        "${manbij}",    {Z::zeven}, {MV::m};
+        "${vrouwbij}",  {Z::zeven}, {MV::v}.
 
