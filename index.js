@@ -152,8 +152,8 @@ var client = dazeus.connect(options, function () {
                         removeFrom(LADIES_FILE, name);
                         client.reply(network, channel, user, TXT_OK, false);
                     }, function () {
-                        dazeus.isCommand(['over', '$'], args, function (name) {
-                            generateStory(client, network, channel, user, name);
+                        dazeus.isCommand(['over'], args, function (name) {
+                            generateStory(client, network, channel, user, name.trim());
                         }, function () {
                             generateStory(client, network, channel, user);
                         });

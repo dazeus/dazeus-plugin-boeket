@@ -1,6 +1,6 @@
 {
   "name": "dazeus-plugin-boeket",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Boeket generator",
   "main": "index.js",
   "scripts": {
