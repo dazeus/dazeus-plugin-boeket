@@ -633,34 +633,34 @@ bemoeilijkt:
         "tot een hel maakt".
 
 naam(X,MV):
-        "Monique",      {X::een}, {MV::v};
-        "Kim",          {X::twee}, {MV::v};
-        "Chantal",      {X::drie}, {MV::v};
-        "Samantha",     {X::vier}, {MV::v};
-        "Antoinette",   {X::vijf}, {MV::v};
-        "Yella",        {X::zes},  {MV::v};
-        "Alexander",    {X::een},  {MV::m};
-        "Tom",          {X::twee}, {MV::m};
-        "Johan",        {X::drie}, {MV::m};
-        "David",        {X::vier}, {MV::m};
-        "Marco",        {X::vijf}, {MV::m};
-        "Erik",         {X::zes},  {MV::m};
+        "${vrouw}",     {X::een}, {MV::v};
+        "${vrouw}",     {X::twee}, {MV::v};
+        "${vrouw}",     {X::drie}, {MV::v};
+        "${vrouw}",     {X::vier}, {MV::v};
+        "${vrouw}",     {X::vijf}, {MV::v};
+        "${vrouw}",     {X::zes},  {MV::v};
+        "${man}",       {X::een},  {MV::m};
+        "${man}",       {X::twee}, {MV::m};
+        "${man}",       {X::drie}, {MV::m};
+        "${man}",       {X::vier}, {MV::m};
+        "${man}",       {X::vijf}, {MV::m};
+        "${man}",       {X::zes},  {MV::m};
         "${man}",       {X::zeven}, {MV::m};
         "${vrouw}",     {X::zeven}, {MV::v}.
 
 bijfiguur(Z,MV):
-        "Peter",        {Z::een}, {MV::m};
-        "Angelique",    {Z::een}, {MV::v};
-        "Arnold",       {Z::twee}, {MV::m};
-        "Debbie",       {Z::twee}, {MV::v};
-        "Martin",       {Z::drie}, {MV::m};
-        "Desiree",      {Z::drie}, {MV::v};
-        "Lodewijk",     {Z::vier}, {MV::m};
-        "Chantal",      {Z::vier}, {MV::v};
-        "Boudewijn",    {Z::vijf}, {MV::m};
-        "Linda",        {Z::vijf}, {MV::v};
-        "Luke",         {Z::zes},  {MV::m};
-        "Patricia",     {Z::zes},  {MV::v};
+        "${manbij}",    {Z::een}, {MV::m};
+        "${vrouwbij}",  {Z::een}, {MV::v};
+        "${manbij}",    {Z::twee}, {MV::m};
+        "${vrouwbij}",  {Z::twee}, {MV::v};
+        "${manbij}",    {Z::drie}, {MV::m};
+        "${vrouwbij}",  {Z::drie}, {MV::v};
+        "${manbij}",    {Z::vier}, {MV::m};
+        "${vrouwbij}",  {Z::vier}, {MV::v};
+        "${manbij}",    {Z::vijf}, {MV::m};
+        "${vrouwbij}",  {Z::vijf}, {MV::v};
+        "${manbij}",    {Z::zes},  {MV::m};
+        "${vrouwbij}",  {Z::zes},  {MV::v};
         "${manbij}",    {Z::zeven}, {MV::m};
         "${vrouwbij}",  {Z::zeven}, {MV::v}.
 
