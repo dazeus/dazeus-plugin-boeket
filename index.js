@@ -30,7 +30,7 @@ var grammar = generator.parse(boeketGrammar);
  * Gets an example line from the grammar and splits it according to IRC_MAX_LENGTH
  * @return {Array} List of strings
  */
-var getExampleLines = function (w, m, ma, wa, random, gender) {
+var getExampleLines = function (w, m, wa, ma, random, gender) {
     var joiner = function (value, isTerminal) {
         if (isTerminal && value !== '.' && value !== ',') {
             return ' ' + value;
