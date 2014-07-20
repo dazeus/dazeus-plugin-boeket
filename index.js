@@ -91,7 +91,7 @@ var generateStory = function (client, network, channel, user, about) {
             var aboutGender = null;
             if (typeof about === 'string') {
                 isReallyRandom = false;
-                if (_(ladies).contains(about)) {
+                if (_(femaleOpts).contains(about)) {
                     randomLady = about;
                     aboutGender = 'v';
                 } else {
